@@ -28,3 +28,7 @@ Using the normalized gene expression data, we performed principal component anal
 ### Co-embedding analysis
 
 We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/04.co-embedding)
+
+### Analysis of smoking-responsive genes.
+
+Smoking-responsive genes for each cell type were inferred by pseudobulk differential gene expression analysis using DESeq2 (v1.41.1). Gender was incorporated as the covariate into the model. See details in [05.DEG](https://github.com/pumclyy/16_multiome/tree/main/05.DEG)
