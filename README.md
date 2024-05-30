@@ -19,3 +19,8 @@ We used DropletQC(v.0.9) to remove “empty” droplets containing ambient RNA f
 ### Peak Calling
 
 The snATAC peak calling and annotation were performed following the Signac pipeline. Specifically, peaks were called using MACS2 with default parameters after combining the reads of all the cells in each cell type to determine the genomic regions enriched for Tn5 accessibility from snATAC fragments, resulting in 330,453 peaks in total. Peaks were then annotated according to distance to protein-coding genes using ChIPseeker. The  gene activity score was calculated via the "GeneActivity" function of Signac. See details in [02.peak_calling](https://github.com/pumclyy/16_multiome/tree/main/02.peak_calling).
+
+### Clustering
+
+Using the normalized gene expression data, we performed principal component analysis
+(PCA) with 50 PCs to compute and store. A uniform manifold approximation and projection (UMAP)-based approach was applied for expression matrices with the first 50 PCs and for chromatin accessibility matrices with the 2nd through 50th PCs (the first PC was excluded as this is typically correlated with sequencing depth). Both expression and chromatin accessibility matrices ere corrected for batch effect using Harmony. A Weighted Nearest Neighbor (WNN) method was applied to integrate the weighted combination of RNA and ATAC-seq modalities. The ‘FindClusters’ function was applied for clustering using smart local moving (SLM) algorithm for modularity optimization at a resolution of 0.5. See details in [03.clustering](https://github.com/pumclyy/16_multiome/tree/main/03.clustering)
