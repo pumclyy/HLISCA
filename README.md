@@ -24,3 +24,7 @@ The snATAC peak calling and annotation were performed following the Signac pipel
 
 Using the normalized gene expression data, we performed principal component analysis
 (PCA) with 50 PCs to compute and store. A uniform manifold approximation and projection (UMAP)-based approach was applied for expression matrices with the first 50 PCs and for chromatin accessibility matrices with the 2nd through 50th PCs (the first PC was excluded as this is typically correlated with sequencing depth). Both expression and chromatin accessibility matrices ere corrected for batch effect using Harmony. A Weighted Nearest Neighbor (WNN) method was applied to integrate the weighted combination of RNA and ATAC-seq modalities. The ‘FindClusters’ function was applied for clustering using smart local moving (SLM) algorithm for modularity optimization at a resolution of 0.5. See details in [03.clustering](https://github.com/pumclyy/16_multiome/tree/main/03.clustering)
+
+### Co-embedding analysis
+
+We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/03.co-embedding)
