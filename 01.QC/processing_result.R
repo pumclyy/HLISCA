@@ -2,7 +2,7 @@
 # Script information                                                      
 # Title: processing QC result
 # Author: Erping Long
-# Date: 2021-03-15
+# Date: 2023-01-06
 # Description: None
 ##############################################################################
 
@@ -86,6 +86,9 @@ lung_4 <- subset(
   subset = percent.mt < 10
 )
 
+# RNA analysis and SCTransform
+DefaultAssay(lung_4) <- "RNA"
+lung_4 <- SCTransform(lung_4, verbose = FALSE) %>% RunPCA() %>% RunUMAP(dims = 1:50, reduction.name = 'umap.rna', reduction.key = 'rnaUMAP_')
 
 saveRDS(lung_4, file = "lung.rds")
 

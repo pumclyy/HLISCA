@@ -2,7 +2,7 @@
 # Script information                                                      
 # Title: Merging data from different samples
 # Author: Erping Long
-# Date: 2021-03-15
+# Date: 2023-01-06
 # Description: None
 ##############################################################################
 
@@ -21,23 +21,23 @@ library(harmony)
 library(GenomicRanges)
 library(SeuratData)
 
-lung_M1 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M1/M1_lung_4.rds")
-lung_M3 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M3/M3_lung_4.rds")
-lung_M4 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M4/M4_lung_4.rds")
-lung_M5 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M5/M5_lung_4.rds")
-lung_M6 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M6/M6_lung_4.rds")
-lung_M7 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M7/M7_lung_4.rds")
-lung_M8 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M8/M8_lung_4.rds")
-lung_M9 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/M9/M9_lung_4.rds")
+lung_M1 <- readRDS(file = "M1_lung_4.rds")
+lung_M3 <- readRDS(file = "M3_lung_4.rds")
+lung_M4 <- readRDS(file = "M4_lung_4.rds")
+lung_M5 <- readRDS(file = "M5_lung_4.rds")
+lung_M6 <- readRDS(file = "M6_lung_4.rds")
+lung_M7 <- readRDS(file = "M7_lung_4.rds")
+lung_M8 <- readRDS(file = "M8_lung_4.rds")
+lung_M9 <- readRDS(file = "M9_lung_4.rds")
 
-lung_NCI_13 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/NCI_13/NCI_13_lung_4.rds")
-lung_NCI_28 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/NCI_28/NCI_28_lung_4.rds")
-lung_NCI_55 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/NCI_55/NCI_55_lung_4.rds")
-lung_NCI_115 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/NCI_115/NCI_115_lung_4.rds")
-lung_NCI_118 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/NCI_118/NCI_118_lung_4.rds")
-lung_S1 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/S1/S1_lung_4.rds")
-lung_S2 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/S2/S2_lung_4.rds")
-lung_N17_20 <- readRDS(file = "/data/Choi_lung/SHARE-seq/Seurat_SHARE/N17_20/N17_20_lung_4.rds")
+lung_NCI_13 <- readRDS(file = "NCI_13_lung_4.rds")
+lung_NCI_28 <- readRDS(file = "NCI_28_lung_4.rds")
+lung_NCI_55 <- readRDS(file = "NCI_55_lung_4.rds")
+lung_NCI_115 <- readRDS(file = "NCI_115_lung_4.rds")
+lung_NCI_118 <- readRDS(file = "NCI_118_lung_4.rds")
+lung_S1 <- readRDS(file = "S1_lung_4.rds")
+lung_S2 <- readRDS(file = "S2_lung_4.rds")
+lung_N17_20 <- readRDS(file = "N17_20_lung_4.rds")
 
 lung_M1@meta.data$orig.ident = c("M1")
 lung_M3@meta.data$orig.ident = c("M3")

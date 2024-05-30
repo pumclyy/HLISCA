@@ -2,7 +2,7 @@
 # Script information                                                      
 # Title: Droplet removing
 # Author: Erping Long
-# Date: 2021-03-15
+# Date: 2022-11-29
 # Description: None
 ##############################################################################
 
