@@ -32,3 +32,9 @@ We performed co-embedding analysis between snRNA and snATAC modalities following
 ### Analysis of smoking-responsive genes.
 
 Smoking-responsive genes for each cell type were inferred by pseudobulk differential gene expression analysis using DESeq2 (v1.41.1). Gender was incorporated as the covariate into the model. See details in [05.DEG](https://github.com/pumclyy/16_multiome/tree/main/05.DEG)
+
+### Analysis of smoking-responsive cCREs
+
+### cellchat
+
+CellChat (version 1.6.0) was used to infer ligand–receptor interactions based on scRNA-seq data. The intercellular communication analyses were performed separately using cells from ever-smokers and never-smokers for comparison at different levels. Then the integrated Human Lung Cell Atlas (HLCA) core dataset was used to validate the trend of MHC-I and MHC-II communication. See details in [07.cellchat](https://github.com/pumclyy/16_multiome/tree/main/07.cellchat)
