@@ -1,3 +1,11 @@
+##############################################################################
+# Script information                                                      
+# Title: Co-embedding
+# Author: Yuyan Li
+# Date: 2024-04-11
+# Description: None
+##############################################################################
+
 library(SeuratData)
 library(Seurat)
 library(Signac)

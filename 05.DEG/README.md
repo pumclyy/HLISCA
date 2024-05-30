@@ -1,0 +1,3 @@
+# Analysis of smoking-responsive genes.
+
+Smoking-responsive genes for each cell type were inferred by pseudobulk differential gene expression analysis using DESeq2 (v1.41.1). First we generated pseudobulk data. We aggragated expression counts of each cell type across all samples. So we generate a pseudobulk data for each cell type. Then we performed differential gene expression analysis with DESeq2. Gender was incorporated as the covariate into the model. **(DESeq2.R)**
