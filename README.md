@@ -27,4 +27,4 @@ Using the normalized gene expression data, we performed principal component anal
 
 ### Co-embedding analysis
 
-We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/03.co-embedding)
+We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/04.co-embedding)
