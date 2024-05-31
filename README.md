@@ -42,3 +42,8 @@ CellChat (version 1.6.0) was used to infer ligand–receptor interactions based 
 ### Trait relevance score calculation
 
 We inferred the lung-cancer-associated score for each cell using SCAVENGE pipeline, based on snATAC-seq and lung cancer GWAS data. See details in [08.SCAVENGE](https://github.com/pumclyy/16_multiome/tree/main/08.SCAVENGE)
+
+### Allelic effects of predicted TF binding, cell-type-specific TF abundance assessment and TF footprinting
+
+Prediction of variant effects on TF binding sites was performed with the motifbreakR package. "Abundant TF" was identified by expression level and expression percent of TF. TF footprint analysis was performed for each allelic-binding TF using the ‘Footprint’ function in Signac by restricting to the peak regions. See details in [09.TF_analysis](https://github.com/pumclyy/16_multiome/tree/main/09.TF_analysis)
+
