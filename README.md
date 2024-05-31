@@ -50,3 +50,9 @@ Prediction of variant effects on TF binding sites was performed with the motifbr
 ### Reporter assays for variant allelic function test
 
 Allelic transcriptional activity of CCVs from the 15_5p15.33 locus was assessed as part of MPRA. See details in [10.MPRA](https://github.com/pumclyy/16_multiome/tree/main/10.MPRA)
+
+### cCRE-module, cCRE-cCRE, and cCRE-gene correlation
+
+The co-accessible cCRE modules of two or more cCREs were identified by Cicero with
+Louvain community detection algorithm. For cCRE-gene correlation, we identified cCREs that may regulate a given gene by computing the correlation between gene expression and accessibility at nearby cCREs. See details in [11.cCRE_analysis](https://github.com/pumclyy/16_multiome/tree/main/11.cCRE_analysis)
+
