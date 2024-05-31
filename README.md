@@ -54,5 +54,5 @@ Allelic transcriptional activity of CCVs from the 15_5p15.33 locus was assessed 
 ### cCRE-module, cCRE-cCRE, and cCRE-gene correlation
 
 The co-accessible cCRE modules of two or more cCREs were identified by Cicero with
-Louvain community detection algorithm. For cCRE-gene correlation, we identified cCREs that may regulate a given gene by computing the correlation between gene expression and accessibility at nearby cCREs. See details in [11.cCRE_analysis](https://github.com/pumclyy/16_multiome/tree/main/11.cCRE_analysis)
+Louvain community detection algorithm. For cCRE-gene correlation, we identified cCREs that may regulate a given gene by computing the correlation between gene expression and accessibility at nearby cCREs. See details in [11.cCRE_analysis](https://github.com/pumclyy/16_multiome/tree/main/11.cCREs_analysis)
 
