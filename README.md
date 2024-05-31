@@ -47,3 +47,6 @@ We inferred the lung-cancer-associated score for each cell using SCAVENGE pipeli
 
 Prediction of variant effects on TF binding sites was performed with the motifbreakR package. "Abundant TF" was identified by expression level and expression percent of TF. TF footprint analysis was performed for each allelic-binding TF using the ‘Footprint’ function in Signac by restricting to the peak regions. See details in [09.TF_analysis](https://github.com/pumclyy/16_multiome/tree/main/09.TF_analysis)
 
+### Reporter assays for variant allelic function test
+
+Allelic transcriptional activity of CCVs from the 15_5p15.33 locus was assessed as part of MPRA. See details in [10.MPRA](https://github.com/pumclyy/16_multiome/tree/main/10.MPRA)
