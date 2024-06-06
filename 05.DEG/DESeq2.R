@@ -37,17 +37,17 @@ library(RColorBrewer)
 library(ashr)
 library(MAST)
 
-pbmc_4 <- readRDS("16_multiome.rds")
+seurat_object <- readRDS("16_multiome.rds")
 
 
 #generate pseudobulk data
 
 
 ##creat single cell experiment object
-counts <- pbmc_4@assays$RNA@counts
-metadata <- pbmc_4@meta.data
+counts <- seurat_object@assays$RNA@counts
+metadata <- seurat_object@meta.data
 
-metadata$cluster_id <- factor(pbmc_4$final_cluster)
+metadata$cluster_id <- factor(seurat_object$final_cluster)
 sce <- SingleCellExperiment(assays = list(counts = counts), 
                             colData = metadata)
 
