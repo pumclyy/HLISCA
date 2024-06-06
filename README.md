@@ -23,36 +23,37 @@ The snATAC peak calling and annotation were performed following the Signac pipel
 ### Clustering
 
 Using the normalized gene expression data, we performed principal component analysis
-(PCA) with 50 PCs to compute and store. A uniform manifold approximation and projection (UMAP)-based approach was applied for expression matrices with the first 50 PCs and for chromatin accessibility matrices with the 2nd through 50th PCs (the first PC was excluded as this is typically correlated with sequencing depth). Both expression and chromatin accessibility matrices ere corrected for batch effect using Harmony. A Weighted Nearest Neighbor (WNN) method was applied to integrate the weighted combination of RNA and ATAC-seq modalities. The ‘FindClusters’ function was applied for clustering using smart local moving (SLM) algorithm for modularity optimization at a resolution of 0.5. See details in [03.clustering](https://github.com/pumclyy/16_multiome/tree/main/03.clustering)
+(PCA) with 50 PCs to compute and store. A uniform manifold approximation and projection (UMAP)-based approach was applied for expression matrices with the first 50 PCs and for chromatin accessibility matrices with the 2nd through 50th PCs (the first PC was excluded as this is typically correlated with sequencing depth). Both expression and chromatin accessibility matrices ere corrected for batch effect using Harmony. A Weighted Nearest Neighbor (WNN) method was applied to integrate the weighted combination of RNA and ATAC-seq modalities. The ‘FindClusters’ function was applied for clustering using smart local moving (SLM) algorithm for modularity optimization at a resolution of 0.5. See details in [03.clustering](https://github.com/pumclyy/16_multiome/tree/main/03.clustering).
 
 ### Co-embedding analysis
 
-We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/04.co-embedding)
+We performed co-embedding analysis between snRNA and snATAC modalities following the Seurat pipeline. See details in [04.co-embedding](https://github.com/pumclyy/16_multiome/tree/main/04.co-embedding).
 
 ### Analysis of smoking-responsive genes.
 
-Smoking-responsive genes for each cell type were inferred by pseudobulk differential gene expression analysis using DESeq2 (v1.41.1). Gender was incorporated as the covariate into the model. See details in [05.DEG](https://github.com/pumclyy/16_multiome/tree/main/05.DEG)
+Smoking-responsive genes for each cell type were inferred by pseudobulk differential gene expression analysis using DESeq2 (v1.41.1). Gender was incorporated as the covariate into the model. See details in [05.DEG](https://github.com/pumclyy/16_multiome/tree/main/05.DEG).
 
 ### Analysis of smoking-responsive cCREs
 
-### cellchat
+We employed the "FindMarkers" function in Seurat to identify peaks of differential accessibility between the smoking and non-smoking states for each cell type. See details in [06.DAR](https://github.com/pumclyy/16_multiome/tree/main/06.DAR).
 
-CellChat (version 1.6.0) was used to infer ligand–receptor interactions based on scRNA-seq data. The intercellular communication analyses were performed separately using cells from ever-smokers and never-smokers for comparison at different levels. Then the integrated Human Lung Cell Atlas (HLCA) core dataset was used to validate the trend of MHC-I and MHC-II communication. See details in [07.cellchat](https://github.com/pumclyy/16_multiome/tree/main/07.cellchat)
+### Cellchat
+
+CellChat (version 1.6.0) was used to infer ligand–receptor interactions based on scRNA-seq data. The intercellular communication analyses were performed separately using cells from ever-smokers and never-smokers for comparison at different levels. Then the integrated Human Lung Cell Atlas (HLCA) core dataset was used to validate the trend of MHC-I and MHC-II communication. See details in [07.cellchat](https://github.com/pumclyy/16_multiome/tree/main/07.cellchat).
 
 ### Trait relevance score calculation
 
-We inferred the lung-cancer-associated score for each cell using SCAVENGE pipeline, based on snATAC-seq and lung cancer GWAS data. See details in [08.SCAVENGE](https://github.com/pumclyy/16_multiome/tree/main/08.SCAVENGE)
+We inferred the lung-cancer-associated score for each cell using SCAVENGE pipeline, based on snATAC-seq and lung cancer GWAS data. See details in [08.SCAVENGE](https://github.com/pumclyy/16_multiome/tree/main/08.SCAVENGE).
 
 ### Allelic effects of predicted TF binding, cell-type-specific TF abundance assessment and TF footprinting
 
-Prediction of variant effects on TF binding sites was performed with the motifbreakR package. "Abundant TF" was identified by expression level and expression percent of TF. TF footprint analysis was performed for each allelic-binding TF using the ‘Footprint’ function in Signac by restricting to the peak regions. See details in [09.TF_analysis](https://github.com/pumclyy/16_multiome/tree/main/09.TF_analysis)
+Prediction of variant effects on TF binding sites was performed with the motifbreakR package. "Abundant TF" was identified by expression level and expression percent of TF. TF footprint analysis was performed for each allelic-binding TF using the ‘Footprint’ function in Signac by restricting to the peak regions. See details in [09.TF_analysis](https://github.com/pumclyy/16_multiome/tree/main/09.TF_analysis).
 
 ### Reporter assays for variant allelic function test
 
-Allelic transcriptional activity of CCVs from the 15_5p15.33 locus was assessed as part of MPRA. See details in [10.MPRA](https://github.com/pumclyy/16_multiome/tree/main/10.MPRA)
+Allelic transcriptional activity of CCVs from the 15_5p15.33 locus was assessed as part of MPRA. See details in [10.MPRA](https://github.com/pumclyy/16_multiome/tree/main/10.MPRA).
 
 ### cCRE-module, cCRE-cCRE, and cCRE-gene correlation
 
 The co-accessible cCRE modules of two or more cCREs were identified by Cicero with
-Louvain community detection algorithm. For cCRE-gene correlation, we identified cCREs that may regulate a given gene by computing the correlation between gene expression and accessibility at nearby cCREs. See details in [11.cCRE_analysis](https://github.com/pumclyy/16_multiome/tree/main/11.cCREs_analysis)
-
+Louvain community detection algorithm. For cCRE-gene correlation, we identified cCREs that may regulate a given gene by computing the correlation between gene expression and accessibility at nearby cCREs. See details in [11.cCRE_analysis](https://github.com/pumclyy/16_multiome/tree/main/11.cCREs_analysis).
