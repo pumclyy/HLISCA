@@ -20,37 +20,37 @@ library(SeuratData)
 library(ChIPseeker)
 
 ####ATAC analysis
-seurat_object <- readRDS("lung.rds")
-seurat_object = RenameIdents(seurat_object, '0' = 'NK', '1' = 'Lymphatic', '2' = 'AT2', '3' = 'AT1', '4' = 'T',
+lung <- readRDS("lung.rds")
+lung = RenameIdents(lung, '0' = 'NK', '1' = 'Lymphatic', '2' = 'AT2', '3' = 'AT1', '4' = 'T',
                           '5' = 'Club', '6' = 'Ciliated', '7' = 'Artery', '8' = 'Vein', '9' = 'Macrophage', '10' = 'Goblet',
                           '11' = 'Fibroblast', '12' = 'Monocyte', '13' = 'Basal', '14' = 'SMC', '15' = 'Capillary',
                           '16' = 'Mesothelial', '17' = 'B', '18' = 'Dendritic', '19' = 'AT1_AT2', '20' = 'NK_T',
                           '21' = 'MyoFib', '22' = 'AT2_pro')
 
-seurat_object$CellType <- Idents(seurat_object)
-seurat_object$CellType <- factor(seurat_object$CellType, levels = c('AT1', 'AT2', 'AT1_AT2','AT2_pro',
+lung$CellType <- Idents(lung)
+lung$CellType <- factor(lung$CellType, levels = c('AT1', 'AT2', 'AT1_AT2','AT2_pro',
                                                               'Club','Ciliated','Goblet','Basal',
                                                               'Artery','Vein','Capillary', "Lymphatic",
                                                               'SMC','MyoFib','Fibroblast','Mesothelial',
                                                               'Macrophage','Monocyte','Dendritic','NK','NK_T', 'B', 'T'))
 
-DefaultAssay(seurat_object) <- "ATAC"
+DefaultAssay(lung) <- "ATAC"
 
 #dividing each cell type into smoker and non_smoker clusters
 
-Idents(seurat_object) <- "orig.ident"
-seurat_object = RenameIdents(seurat_object, 'M1' = 'non_smoker', 'M3' = 'smoker', 'M4' = 'smoker', 'M5' = 'smoker', 'M6' = 'smoker',
+Idents(lung) <- "orig.ident"
+lung = RenameIdents(lung, 'M1' = 'non_smoker', 'M3' = 'smoker', 'M4' = 'smoker', 'M5' = 'smoker', 'M6' = 'smoker',
                           'M7' = 'non_smoker', 'M8' = 'non_smoker', 'M9' = 'non_smoker', 'N17_20' = 'non_smoker', 'NCI_115' = 'non_smoker', 
                           'NCI_118' = 'smoker', 'NCI_13' = 'non_smoker', 'NCI_28' = 'non_smoker', 'NCI_55' = 'smoker', 
                           'S1' = 'smoker', 'S2' = 'smoker')
-seurat_object$Smoking <- Idents(seurat_object)
-seurat_object$Celltype_ss <- paste(seurat_object$CellType, seurat_object$Smoking, sep = "_")
-table(seurat_object$Celltype_ss)
+lung$Smoking <- Idents(lung)
+lung$Celltype_ss <- paste(lung$CellType, lung$Smoking, sep = "_")
+table(lung$Celltype_ss)
 
 ###calling peaks using divided 46 clusters
 
 # call peaks using MACS2
-peaks <- CallPeaks(seurat_object, group.by = "Celltype_ss",
+peaks <- CallPeaks(lung, group.by = "Celltype_ss",
                    macs2.path = "conda/envs/PeakCalling_analysis/bin/macs2",
                    outdir ="peaks")
 peaks
@@ -64,29 +64,29 @@ saveRDS(peaks, file = "peaks.rds")
 # quantify counts in each peak
 peaks <- readRDS(file = "peaks.rds")
 macs2_counts <- FeatureMatrix(
-  fragments = Fragments(seurat_object),
+  fragments = Fragments(lung),
   features = peaks,
-  cells = colnames(seurat_object)
+  cells = colnames(lung)
 )
 
 annotations <- GetGRangesFromEnsDb(ensdb = EnsDb.Hsapiens.v86)
 
 # create a new assay using the MACS2 peak set and add it to the Seurat object
-seurat_object[["peaks"]] <- CreateChromatinAssay(
+lung[["peaks"]] <- CreateChromatinAssay(
   counts = macs2_counts,
   sep = c(":", "-"),
-  fragments = Fragments(seurat_object),
+  fragments = Fragments(lung),
   annotation = annotations
 )
 
-DefaultAssay(seurat_object) <- "peaks"
+DefaultAssay(lung) <- "peaks"
 
-seurat_object <- FindTopFeatures(seurat_object, min.cutoff = 5)
-seurat_object <- RunTFIDF(seurat_object)
-seurat_object <- RunSVD(seurat_object)
+lung <- FindTopFeatures(lung, min.cutoff = 5)
+lung <- RunTFIDF(lung)
+lung <- RunSVD(lung)
 
-saveRDS(seurat_object, file = "peak_called_by_cell_types_smoking.rds")
-seurat_object <- readRDS("peak_called_by_cell_types_smoking.rds")
+saveRDS(lung, file = "peak_called_by_cell_types_smoking.rds")
+lung <- readRDS("peak_called_by_cell_types_smoking.rds")
 
 
 # run FindMarkers by parallel
@@ -95,15 +95,15 @@ availableCores()
 plan("multisession", workers = 16)
 
 # Signac DAR
-celltypes <- levels(seurat_object$CellType)
-DefaultAssay(seurat_object)
-table(Idents(seurat_object))
-Idents(seurat_object) <- "Celltype_ss"
+celltypes <- levels(lung$CellType)
+DefaultAssay(lung)
+table(Idents(lung))
+Idents(lung) <- "Celltype_ss"
 DAR.list <- list()
 for (i in celltypes){
   cluster1 <- paste0(i,"_smoker")
   cluster2 <- paste0(i,"_non_smoker")
-  marker_i <- FindMarkers(seurat_object, ident.1 = cluster1, ident.2 = cluster2, 
+  marker_i <- FindMarkers(lung, ident.1 = cluster1, ident.2 = cluster2, 
                           test.use = 'LR',latent.vars = 'nCount_peaks')
   DAR.list[[i]] <- marker_i
   filename <- paste0(i,".smoking.DAR.LR.csv")
@@ -121,7 +121,7 @@ DAR.list.sig <- lapply(DAR.list, function(x) {
 require(TxDb.Hsapiens.UCSC.hg38.knownGene)
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 library(org.Hs.eg.db)
-peaks <- seurat_object@assays$peaks@ranges
+peaks <- lung@assays$peaks@ranges
 peakAnno <- annotatePeak(peaks,
                          tssRegion=c(-3000, 3000),
                          TxDb=txdb, annoDb="org.Hs.eg.db")
