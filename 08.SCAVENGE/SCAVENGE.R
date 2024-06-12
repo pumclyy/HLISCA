@@ -20,19 +20,19 @@ library(dplyr)
 
 trait_file <- "Overall_PP_SHARE_Flat.bed"
 
-pbmc5krda <- "NCI_M1_SE_gvar.rda"
+lung5krda <- "NCI_M1_SE_gvar.rda"
 
-NCI_M1 <- load(pbmc5krda)
+NCI_M1 <- load(lung5krda)
 
 ###gchromVAR analysis
 
-SE_pbmc5k <- addGCBias(SE_gvar, genome = BSgenome.Hsapiens.UCSC.hg38)
-SE_pbmc5k_bg <- getBackgroundPeaks(SE_pbmc5k, niterations=200)
-trait_import <- importBedScore(rowRanges(SE_pbmc5k), trait_file, colidx=5)
-SE_pbmc5k_DEV <- computeWeightedDeviations(SE_pbmc5k, trait_import, background_peaks = SE_pbmc5k_bg)
+SE_lung5k <- addGCBias(SE_gvar, genome = BSgenome.Hsapiens.UCSC.hg38)
+SE_lung5k_bg <- getBackgroundPeaks(SE_lung5k, niterations=200)
+trait_import <- importBedScore(rowRanges(SE_lung5k), trait_file, colidx=5)
+SE_lung5k_DEV <- computeWeightedDeviations(SE_lung5k, trait_import, background_peaks = SE_lung5k_bg)
 
 ###Reformat results
-z_score_mat <- data.frame(colData(SE_pbmc5k), z_score=t(assays(SE_pbmc5k_DEV)[["z"]]) %>% c)
+z_score_mat <- data.frame(colData(SE_lung5k), z_score=t(assays(SE_lung5k_DEV)[["z"]]) %>% c)
 head(z_score_mat)
 
 ### Generate the seed cell index (using the top 5% if too many cells are eligible)
@@ -42,7 +42,7 @@ seed_idx <- seedindex(z_score_mat$z_score, 0.05)
 scale_factor <- cal_scalefactor(z_score=z_score_mat$z_score, 0.01)
 
 ###Construct m-knn graph
-peak_by_cell_mat <- assay(SE_pbmc5k)
+peak_by_cell_mat <- assay(SE_lung5k)
 tfidf_mat <- tfidf(bmat=peak_by_cell_mat, mat_binary=TRUE, TF=TRUE, log_TF=TRUE)
 
 ###Calculate lsi-mat
