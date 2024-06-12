@@ -11,13 +11,13 @@ library(Signac)
 library(harmony)
 library(ggplot2)
 
-pbmc_4 <- readRDS("16_multiome.rds")
+lung <- readRDS("16_multiome.rds")
 
 #Calculate the Gene activity score
 
-expscore <- GeneActivity(pbmc_4, assay = "peaks", features = rownames(pbmc_4))
+expscore <- GeneActivity(lung, assay = "peaks", features = rownames(lung))
 
-pbmc_4@assays$score <- CreateAssayObject(counts = expscore)
+lung@assays$score <- CreateAssayObject(counts = expscore)
 
 #read the markers list
 
@@ -26,8 +26,8 @@ markers <- read.csv("markers.csv")
 #calculate the correlation
 
 for (i in markers) {
-  p1 <- DotPlot(pbmc_4, features = i, assay = "SCT")
-  p2 <- DotPlot(pbmc_4, features = i, assay = "score")
+  p1 <- DotPlot(lung, features = i, assay = "SCT")
+  p2 <- DotPlot(lung, features = i, assay = "score")
   
   cor.test(p1$data$pct.exp, p2$data$pct.exp)
 }
