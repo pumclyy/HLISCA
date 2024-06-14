@@ -1,4 +1,4 @@
-# Integrated atlas of human lung across chromatin accessibilty and transcriptome
+# Integrated single-cell atlas of human lung combining chromatin accessibility and gene expression
 
 This repository contains the code to analyze the single cell multiome data of human lung as part of the manuscript "Context-aware single-cell multiome approach identified cell-type specific lung cancer susceptibility genes".
 
@@ -6,7 +6,7 @@ This repository contains the code to analyze the single cell multiome data of hu
 
 ## data
 
-The data we used is available on [Zenodo](https://)
+The data are deposited in the Gene Expression Omnibus ([GEO](https://www.ncbi.nlm.nih.gov/geo/)) database under the accession GSE241468.
 
 ---
 
