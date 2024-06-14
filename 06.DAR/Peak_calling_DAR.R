@@ -39,10 +39,10 @@ DefaultAssay(lung) <- "ATAC"
 #dividing each cell type into smoker and non_smoker clusters
 
 Idents(lung) <- "orig.ident"
-lung = RenameIdents(lung, 'M1' = 'non_smoker', 'M3' = 'smoker', 'M4' = 'smoker', 'M5' = 'smoker', 'M6' = 'smoker',
-                          'M7' = 'non_smoker', 'M8' = 'non_smoker', 'M9' = 'non_smoker', 'N17_20' = 'non_smoker', 'NCI_115' = 'non_smoker', 
-                          'NCI_118' = 'smoker', 'NCI_13' = 'non_smoker', 'NCI_28' = 'non_smoker', 'NCI_55' = 'smoker', 
-                          'S1' = 'smoker', 'S2' = 'smoker')
+lung = RenameIdents(lung, 'MN1' = 'non_smoker', 'MS1' = 'smoker', 'MS2' = 'smoker', 'MS3' = 'smoker', 'MS4' = 'smoker',
+                          'MN2' = 'non_smoker', 'MN3' = 'non_smoker', 'MN4' = 'non_smoker', 'FN1' = 'non_smoker', 'FN2' = 'non_smoker', 
+                          'FS1' = 'smoker', 'FN3' = 'non_smoker', 'FN4' = 'non_smoker', 'FS2' = 'smoker', 
+                          'FS3' = 'smoker', 'FS3' = 'smoker')
 lung$Smoking <- Idents(lung)
 lung$Celltype_ss <- paste(lung$CellType, lung$Smoking, sep = "_")
 table(lung$Celltype_ss)

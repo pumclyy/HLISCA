@@ -21,9 +21,9 @@ lung <- readRDS("16_multiome.rds")
 split_list <- SplitObject(lung, split.by = "orig.ident") 
 
 
-list_ns <- split_list[c("M1", "M7", "M8", "M9", "NCI_13", "NCI_28", "NCI_115", "N17_20")]
+list_ns <- split_list[c("MN1", "MN2", "MN3", "MN4", "FN1", "FN2", "FN3", "FN4")]
 
-list_s <- split_list[c("M3", "M4", "M5", "M6", "NCI_55", "NCI_118", "S1", "S2")]
+list_s <- split_list[c("MS1", "MS2", "MS3", "MS4", "FS1", "FS2", "FS3", "FS4")]
 
 
 lung_ns <- merge(list_ns$M1, 
