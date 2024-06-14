@@ -42,7 +42,7 @@ Idents(lung) <- "orig.ident"
 lung = RenameIdents(lung, 'MN1' = 'non_smoker', 'MS1' = 'smoker', 'MS2' = 'smoker', 'MS3' = 'smoker', 'MS4' = 'smoker',
                           'MN2' = 'non_smoker', 'MN3' = 'non_smoker', 'MN4' = 'non_smoker', 'FN1' = 'non_smoker', 'FN2' = 'non_smoker', 
                           'FS1' = 'smoker', 'FN3' = 'non_smoker', 'FN4' = 'non_smoker', 'FS2' = 'smoker', 
-                          'FS3' = 'smoker', 'FS3' = 'smoker')
+                          'FS3' = 'smoker', 'FS4' = 'smoker')
 lung$Smoking <- Idents(lung)
 lung$Celltype_ss <- paste(lung$CellType, lung$Smoking, sep = "_")
 table(lung$Celltype_ss)
