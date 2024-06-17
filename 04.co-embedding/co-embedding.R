@@ -16,7 +16,7 @@ library(cowplot)
 lung_4 <- readRDS("lung.rds")
 
 lung.rna <- DietSeurat(lung_4, assay = "RNA")
-lung.atac <- DietSeurat(lung_4, assays = "peaks")
+lung.atac <- DietSeurat(lung_4, assays = "ATAC")
 
 # Perform standard analysis of each modality independently RNA analysis
 
