@@ -149,10 +149,6 @@ res <- results(dds,
                contrast = contrast,
                alpha = 0.05)
 
-res <- lfcShrink(dds, 
-                 contrast =  contrast,
-                 res=res, type = 'ashr')
-
 res_tbl <- res %>%
   data.frame() %>%
   rownames_to_column(var="gene") %>%
